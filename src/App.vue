@@ -1,17 +1,18 @@
 <template>
-  
-<router-view>
-</router-view>
+  <div>
+  <LayoutPage />
+</div>
 
 </template>
 
 <script>
-
+import  LayoutPage  from "./views/LayoutPage";
 
 export default {
+  
   name: 'App',
   components: {
-   
+   LayoutPage
   }
 }
 </script>
@@ -22,8 +23,13 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: white;
   background-color: #284B36;
   
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 </style>
