@@ -1,24 +1,24 @@
 <template>
     <q-layout view="hHh lpR fFf">
-  
-    <NavBar @toggle:LeftDrawer="toggleLeftDrawer()"/>
-  
-      <q-drawer class="mobile-only"  v-model="leftDrawerOpen"  side="left" bordered>
+      <NavBar @toggle:LeftDrawer="toggleLeftDrawer()"/>
+    <!-- <NavBar @toggle:LeftDrawer="toggleLeftDrawer()"/>
+   -->
+      <!-- <q-drawer class="mobile-only"  v-model="leftDrawerOpen"  side="left" bordered>
         <q-btn class="mobile-only row" color="black"  flat round icon="menu" @click="toggleLeftDrawer()" />
         <ul class="my-list column text-weight-bold">
-        <li><router-link to="/">Home</router-link></li>
+          <li><router-link to="/">Home</router-link></li>
         <li>
           <router-link to="/about">Childrens Home</router-link>
         </li>
         <li>
-          <a href="https://www.google.com" target="_blank">Elders Home</a>
+          <router-link to="/about">Elders Home</router-link>
         </li>
         <li>
-          <a href="https://www.google.com" target="_blank">Notifications</a>
+          <router-link to="/about">Notifications</router-link>
         </li>
-        <li><a href="https://www.google.com" target="_blank">Donate</a></li>
+        <li> <router-link to="/about">Donate</router-link></li>
       </ul>
-      </q-drawer>
+      </q-drawer> -->
   
       <q-page-container style="padding-top: 0;">
         <router-view/>
@@ -29,7 +29,7 @@
   
   
 <script>
-import { ref } from 'vue';
+
 import NavBar from '.././components/Marketplace/NavBar.vue';
 
 export default {
@@ -37,16 +37,16 @@ name: 'LayoutPage',
 components:{
     NavBar
 },
-  setup () {
-    const leftDrawerOpen = ref(false)
+  // setup () {
+  //   const leftDrawerOpen = ref(false)
 
-    return {
-      leftDrawerOpen,
-      toggleLeftDrawer () {
-        leftDrawerOpen.value = !leftDrawerOpen.value
-      }
-    }
-  }
+  //   return {
+  //     leftDrawerOpen,
+  //     toggleLeftDrawer () {
+  //       leftDrawerOpen.value = !leftDrawerOpen.value
+  //     }
+  //   }
+  // }
 }
 </script>
 

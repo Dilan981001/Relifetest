@@ -6,8 +6,8 @@
           class="q-mt-sm"
         />
         <div class="product-details text-center">
-          <text-subtitle2 class="text-weight-bold">Product Name</text-subtitle2>
-          <p style="margin-bottom: 0">$19.99</p>
+          <text-subtitle2 class="text-weight-bold text-black">Product Name</text-subtitle2>
+          <p style="margin-bottom: 0; color: black;" >$19.99</p>
           <q-btn
             class=""
             @click="addToCart"
@@ -44,5 +44,8 @@ addToCart() {
 
 .image-container {
   max-width: 220px;
+  justify-content: center;
+  text-align: center;
+  margin: 25px auto;
 }
 </style>

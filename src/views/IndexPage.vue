@@ -2,7 +2,7 @@
 
     <div class="grid-container">
       
-      <Carousel  class="desktop-only" />
+      <Carousel />
       <ProductFilter />
       <ProductsContainer/>
      </div>
