@@ -44,6 +44,7 @@
           color="white"
           text-color="black"
           label="Log in / Sign Up"
+          to="/signup"
           size="70%"
           class="text-weight-bold q-ml-md"
         />
@@ -72,6 +73,7 @@ export default {
 .header-container {
   top: 0;
   left: 0;
+  right:0;
   position: sticky;
 }
 
