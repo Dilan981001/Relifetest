@@ -3,7 +3,6 @@
               <q-input
                 outlined
                 rounded
-                v-model="text"
                 placeholder="Search Products"
                 dense
                 bg-color="white"

@@ -1,7 +1,6 @@
 <template>
 
     <div class="grid-container">
-      
       <Carousel />
       <ProductFilter />
       <ProductsContainer/>
@@ -22,6 +21,13 @@ export default {
     ProductFilter,
     ProductsContainer,
   },
+  // mounted(){
+  //     let user = localStorage.getItem("user-info");
+  //     if(!user){
+  //       this.$router.push({name:"signup"})
+      
+  //     }
+  // }
   
 };
 </script>

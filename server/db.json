@@ -1,0 +1,28 @@
+{
+  "user": [
+    {
+      "name": "Cruz Clarke",
+      "email": "byjohuvo@mailinator.com",
+      "password": "Ratione vitae et ame",
+      "id": 1
+    },
+    {
+      "name": "yathu",
+      "email": "yathu2198@gmail.com",
+      "password": "yathu",
+      "id": 2
+    },
+    {
+      "name": "yathu",
+      "email": "yathu@gmail.com",
+      "password": "yathu",
+      "id": 3
+    },
+    {
+      "name": "Timon Anderson",
+      "email": "xefimym@mailinator.com",
+      "password": "Omnis ut voluptatem ",
+      "id": 4
+    }
+  ]
+}

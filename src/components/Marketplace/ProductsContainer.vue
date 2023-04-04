@@ -1,24 +1,11 @@
 <template>
-  <div class="row justify-center q-pt-lg">
-    <div class="col-lg-3">
+  <div class="container row justify-center q-pt-lg q-mt-lg bg-blue">
+    
       <ProductList />
-      <ProductList />
-    </div>
-    <div class="col-lg-3">
-      <ProductList />
-      <ProductList />
-    </div>
-    <div class="col-lg-3">
-      <ProductList />
-      <ProductList />
-    </div>
-    <div class="col-lg-3">
-      <ProductList />
-      <ProductList />
-    </div>
+  
   </div>
 
-  <div class="row mobile-only q-pt-lg">
+  <!-- <div class="row mobile-only q-pt-lg">
     <div class="col-xs-12">
       <ProductList />
       <ProductList />
@@ -28,7 +15,7 @@
       <ProductList />
       <ProductList />
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -43,8 +30,10 @@ export default {
 </script>
 
 <style scoped>
-.col-lg-3 {
-  max-width: 250px;
-  width: 100%;
+
+
+.container{
+
+
 }
 </style>

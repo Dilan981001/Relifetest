@@ -1,7 +1,7 @@
 <template>
      <div class="q-mt-md">
         <div class="row row1 no-wrap">
-          <div class="">
+          <div>
             <h5 class="text-white text-center">CHOOSE PRODUCTS</h5>
           </div>
         </div>
