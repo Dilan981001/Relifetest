@@ -32,7 +32,7 @@
       </ul>
    
     <div class="btn-main self-center">
-      <div v-bind:class="{hide:hide}">
+      <div v-bind:class="{hide:hide}" class="row justify-center item-center ">
         <q-btn
           color="white"
           text-color="black"
@@ -48,13 +48,23 @@
           size="70%"
           class="text-weight-bold q-ml-md"
         />
+      <q-btn to="/cart" size="10px" class="q-ml-md" color="purple">
+  <q-icon name="shopping_cart" />
+  <transition name="cart-counter">
+    <q-badge  color="purple" floating >{{ items }} </q-badge>
+  </transition>
+</q-btn>
+
       </div>
-      <div class=""></div>
+      
+      
+   
     </div>
   </q-header>
 </template>
 
 <script>
+import { mapGetters,mapState } from 'vuex';
 export default {
   data() {
     return {
@@ -63,9 +73,23 @@ export default {
     };
   },
   methods:{
+   
     toggleList(){
       this.hide=!this.hide;
     }
+},
+computed: { ...mapGetters({
+
+  cartState:"getCartState",
+}),
+...mapState("cartModule", ["cart"]),
+items(){
+    let sum = 0;
+      this.cart.forEach((each) => {
+        sum = sum + Number(each.count);
+      });
+      return sum;
+  }
 }}
 </script>
 
@@ -103,6 +127,24 @@ a {
 .logo .btn {
   display: none;
 }
+
+.cart-counter-appear-active,
+.cart-counter-enter-active {
+  animation: pulse 0.5s;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 
 @media all and (max-width: 864px) {
   .header-container {

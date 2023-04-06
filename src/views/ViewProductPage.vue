@@ -7,7 +7,7 @@
           <q-img :src="product.images[0]" />
         </div>
         <div class="column items-center justify-center col-12 col-md-6  ">
-          <h2 class="text-h5">{{ product.name }}</h2>
+          <h2 class="text-h5">{{ product.title }}</h2>
           <div class="text-subtitle1">{{ product.description }}</div>
           <div class="text-subtitle1">Stock : {{ product.stock }}</div>
           <div class="text-subtitle1">Brand : {{ product.brand }}</div>
@@ -22,8 +22,8 @@
           <q-btn
             class="q-mt-md"
             color="primary"
-            label="Buy Now"
-            @click="addToCart"
+            label="ADD TO CART"
+            @click="addToCart(product.id,product.name,product.thumbnail,product.price)"
           />
           
         </div>
@@ -52,10 +52,18 @@ export default{
       } catch (error) {
         console.log(error);
       }
+    },
+    methods:{
+      addToCart(id,title,image,price){
+    const product = {
+            id: id,
+            title :title,
+            img:image,
+            price:price,
+        } ;
+     this.$store.dispatch('cartModule/setCart',product)
+  }
     }
 }
 </script>
 
-<style scoped>
-
-</style>
