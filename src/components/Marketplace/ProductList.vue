@@ -13,7 +13,7 @@
             color="primary"
             icon="add_circle"
             label="ADD TO CART"
-          
+            @click="addToCart(product.id,product.title,product.thumbnail,product.price)"
           />
         </div>
       </div>
@@ -33,6 +33,15 @@ data(){
 methods:{
   ClickProduct(id){
     this.$router.push({ name: 'ViewProduct', params: {productId: id }})
+  },
+  addToCart(id,title,image,price){
+    const product = {
+            id: id,
+            title :title,
+            img:image,
+            price:price,
+        } ;
+     this.$store.dispatch('cartModule/setCart',product)
   }
 },
 mounted(){

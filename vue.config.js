@@ -9,5 +9,8 @@ module.exports = defineConfig({
       importStrategy: 'kebab',
       rtlSupport: false
     }
+  },
+  compilerOptions: {
+    isCustomElement: tag => tag.startsWith('q-')
   }
 })

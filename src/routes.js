@@ -1,6 +1,7 @@
 import IndexPage from './views/IndexPage.vue';
 import AboutPage from './views/AboutPage.vue';
 import ViewProductPage from './views/ViewProductPage.vue'
+import CartPage from './views/CartPage.vue'
 import SignUp from './components/Marketplace/SignUp.vue';
 import LogIn from './components/Marketplace/LogIn.vue'
 
@@ -14,6 +15,10 @@ const routes = [
       path: '/products/:productId',
       name: 'ViewProduct',
       component: ViewProductPage    },
+      {
+        path: '/cart',
+        name: 'cart',
+        component: CartPage    },
     {
       path: '/about',
       name: 'about',
