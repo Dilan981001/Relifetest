@@ -9,7 +9,7 @@ export default {
     },
     mutations:{
         GET_PRODUCT_SUCCESS : function (state,payload){
-           
+         
             state.productsList.products =payload.products
           //  console.log(state.productsList.products);
            
@@ -19,7 +19,8 @@ export default {
         getProducts: async function({commit}){
             try {
                 let response =await ProductService.getAllProducts()
-                commit("GET_PRODUCT_SUCCESS",{products:response.data.products})
+            
+                commit("GET_PRODUCT_SUCCESS",{products:response.data})
                
             } catch (error) {
                 console.log(error);

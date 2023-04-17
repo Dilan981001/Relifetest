@@ -3,13 +3,20 @@
     <h2>Sign Up</h2>
 
     <div class="q-pa-md bg-red q-mt-lg" style="max-width: 400px">
-      <q-form @submit="onSubmit" class="q-gutter-md">
+      <q-form @submit.prevent="SignUp" class="q-gutter-md">
         <q-input
           filled
           dense
           class="bg-white"
-          v-model="name"
-          label=" Enter Your name "
+          v-model="fname"
+          label=" Enter First name "
+        />
+        <q-input
+          filled
+          dense
+          class="bg-white"
+          v-model="lname"
+          label=" Enter Last name "
         />
         <q-input
           filled
@@ -23,7 +30,16 @@
           dense
           class="bg-white"
           v-model="password"
+          type="password"
           label=" Enter Your password "
+        />
+        <q-input
+          filled
+          dense
+          class="bg-white"
+          v-model="cpassword"
+          type="password"
+          label=" Confirm Your password "
         />
 
         <div>
@@ -47,26 +63,39 @@ export default {
   name: "app",
   data() {
     return {
-      name: "",
+      fname: "",
+      lname: "",
       email: "",
       password: "",
+      cpassword:""
     };
   },
   methods: {
-    async onSubmit() {
-      let result = await axios.post("http://localhost:3000/user", {
-        name: this.name,
-        email: this.email,
-        password: this.password,
-      });
+    async SignUp() {
+      
+      if(this.password === this.cpassword){
+        const user = {
+          fname: this.fname,
+          lname:this.lname,
+          email:this.email,
+          password:this.password
+        }
 
-      if(result.status==201){
-        localStorage.setItem("user-info",JSON.stringify(result))
+       await axios.post('https://limitless-lake-55070.herokuapp.com/user/signup',user)
+       .then(()=>{
+        localStorage.setItem("user-info",JSON.stringify(user))
+        this.$router.push({name:"login"})
+       })
+       .catch(err=>{
+        console.log(err);
+       })
+      }else{
+        //error
       }
       this.name='';
       this.email='';
       this.password='';
-      this.$router.push({name:"login"})
+     
     },
   },
   // mounted(){

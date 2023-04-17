@@ -1,7 +1,7 @@
 <template>
   <div class="container row justify-center q-pt-lg q-mt-lg bg-blue">
     
-      <ProductList />
+      <ProductBox />
   
   </div>
 
@@ -19,12 +19,12 @@
 </template>
 
 <script>
-import ProductList from "./ProductList.vue";
+import ProductBox from "./ProductBox.vue";
 
 export default {
   name: "ProductsContainer",
   components: {
-    ProductList,
+    ProductBox,
   },
 };
 </script>
@@ -34,6 +34,6 @@ export default {
 
 .container{
 
-
+margin-top: 0;
 }
 </style>

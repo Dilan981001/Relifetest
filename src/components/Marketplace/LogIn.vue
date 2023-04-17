@@ -3,7 +3,7 @@
       <h2>Log In</h2>
   
       <div class="q-pa-md bg-red q-mt-lg" style="max-width: 400px">
-        <q-form @submit="onSubmitLogin" class="q-gutter-md">
+        <q-form @submit.prevent="onSubmitLogin" class="q-gutter-md">
           <q-input
             filled
             dense
@@ -15,6 +15,7 @@
             filled
             dense
             class="bg-white"
+            type="password"
             v-model="password"
             label=" Enter Your password "
           />
@@ -46,13 +47,16 @@
     },
     methods: {
    async  onSubmitLogin(){
-                let result = await axios.get(`http://localhost:3000/user?email=${this.email}&password=${this.password}`);
-                console.log(result);
-                if(result.status==200 && result.data.length>0){
-        localStorage.setItem("user-info",JSON.stringify(result.data[0]))
+    const body ={
+        email:this.email,
+        password:this.password
       }
-
-      this.$router.push({name:"home"})
+           await axios.post(`https://limitless-lake-55070.herokuapp.com/user/signIn`,body)
+          .then(()=>{
+            localStorage.setItem("user-info",JSON.stringify(body))
+            this.$router.push({name:"home"})
+          })
+              
         }
     },
   //   mounted(){

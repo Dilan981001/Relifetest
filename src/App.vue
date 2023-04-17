@@ -7,9 +7,12 @@
 
 <script>
 import  LayoutPage  from "./views/LayoutPage";
-
+import store from "./store";
+import { provide } from "vue";
 export default {
-  
+  setup(){
+    provide('store',store)
+  },
   name: 'App',
   components: {
    LayoutPage

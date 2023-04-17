@@ -10,7 +10,5 @@ module.exports = defineConfig({
       rtlSupport: false
     }
   },
-  compilerOptions: {
-    isCustomElement: tag => tag.startsWith('q-')
-  }
+  
 })
