@@ -51,7 +51,7 @@
       <q-btn to="/cart" size="10px" class="q-ml-md" color="purple">
   <q-icon name="shopping_cart" />
   <transition name="cart-counter">
-    <q-badge  color="purple" floating >{{ items }} </q-badge>
+    <q-badge  color="purple" floating > {{ cartTotalState }}  </q-badge>
   </transition>
 </q-btn>
 
@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import { mapGetters,mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
@@ -73,24 +73,19 @@ export default {
     };
   },
   methods:{
-   
     toggleList(){
       this.hide=!this.hide;
     }
 },
-computed: { ...mapGetters({
-
-  cartState:"getCartState",
+computed: mapGetters({
+  cartTotalState:"getCartTotalCount"
 }),
-...mapState("cartModule", ["cart"]),
-items(){
-    let sum = 0;
-      this.cart.forEach((each) => {
-        sum = sum + Number(each.count);
-      });
-      return sum;
-  }
-}}
+
+  
+
+
+
+}
 </script>
 
 <style scoped>

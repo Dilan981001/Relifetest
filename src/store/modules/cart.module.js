@@ -8,7 +8,7 @@ export default {
             let result = state.cart;
                 
             let resObj = result.find(resObj => resObj.id === item.id);
-            resObj ? resObj.count++ : result.push({'id':item.id, 'title': item.title, 'img':item.img, "price":item.price, 'count': 1});
+            resObj ? resObj.count++ : result.push({'id':item.id, 'name': item.name, 'img':item.img, "price":item.price, 'count': 1});
             state.cart = result
         },
         DEL_ITEM:(state,id)=>{

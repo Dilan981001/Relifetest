@@ -2,18 +2,18 @@
 
 <div v-for="product in productState.products" :key="product.id" class="cursor-pointer image-container q-ma-sm bg-white">
         <q-img
-          :src='product.thumbnail'
+          :src='product.imageURL'
           style="height: 200px; width: 200px"
           @click="ClickProduct(product.id)"
         />
         <div class="product-details text-center">
-          <p class="text-weight-bold text-black text-center" >{{product.title}}</p>
+          <p class="text-weight-bold text-black text-center" >{{product.name}}</p>
           <p style=" color: black;" >RS {{product.price}}.00</p>
           <q-btn
             color="primary"
             icon="add_circle"
             label="ADD TO CART"
-            @click="addToCart(product.id,product.title,product.thumbnail,product.price)"
+            @click="addToCart(product.id,product.name,product.imageURL,product.price)"
           />
         </div>
       </div>
@@ -34,10 +34,10 @@ methods:{
   ClickProduct(id){
     this.$router.push({ name: 'ViewProduct', params: {productId: id }})
   },
-  addToCart(id,title,image,price){
+  addToCart(id,name,image,price){
     const product = {
             id: id,
-            title :title,
+            name :name,
             img:image,
             price:price,
         } ;
@@ -51,15 +51,6 @@ mounted(){
 computed: mapGetters({
   productState:"getProdutsState"
 })
-// addToCart() {
-//     const product = {
-//       id: 1,
-//       name: "Product Name",
-//       price: 19.99,
-//       image: "product-image.jpg",
-//     };
-//     this.$emit("add-to-cart", product);
-//   },
 
 
 }

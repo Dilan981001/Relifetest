@@ -1,7 +1,7 @@
 <template>
     <q-layout view="hHh ppp fFf">
       <NavBar/>
-        <router-view/>
+        <router-view />
     </q-layout>
   </template>
  
@@ -9,7 +9,6 @@
 <script>
 
 import NavBar from '.././components/Marketplace/NavBar.vue';
-
 export default {
 name: 'LayoutPage',
 components:{

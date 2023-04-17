@@ -47,8 +47,8 @@
 
       <q-card class="my-card text-black q-mt-lg">
         <q-card-section class="row justify-evenly">
-          <div class="text-h6">Total Quantity : {{ items }}</div>
-          <div class="text-h6">Grand Total : Rs {{ total }}</div>
+          <div class="text-h6">Total Quantity : {{ cartTotalCountState }}</div>
+          <div class="text-h6">Grand Total : Rs {{ cartTotalPriceState }}</div>
           <q-btn class="q-mb-lg" label="BUY NOW" dense color="blue" />
         </q-card-section>
       </q-card>
@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "CartPage",
@@ -78,7 +78,7 @@ export default {
           name: "title",
           align: "left",
           label: "Item",
-          field: "title",
+          field: "name",
           editable: true,
         },
         { name: "image", align: "left", label: "", field: "thumbnail" },
@@ -96,32 +96,17 @@ export default {
     };
   },
   created() {
-    this.allItems = this.cart;
+    this.allItems = this.cartProductState;
   },
-  computed: {
-    ...mapState("cartModule", ["cart"]),
-    items() {
-      let sum = 0;
-      this.cart.forEach((each) => {
-        sum = sum + Number(each.count);
-      });
-      return sum;
-    },
-    total() {
-      let total = 0;
-      this.cart.forEach((each) => {
-        total = total + each.price * each.count;
-      });
-      return parseFloat(total).toFixed(2);
-    },
-  },
+  computed: mapGetters({
+    cartTotalCountState: "getCartTotalCount",
+    cartTotalPriceState: "getTotalPrice",
+    cartProductState: "getCartState",
+  }),
   methods: {
     ...mapMutations("cartModule", ["DEL_ITEM"]),
     deleteRow(id) {
       this.DEL_ITEM(id);
-    },
-    onChangeQuantity(id, quantity) {
-      console.log(id, quantity);
     },
   },
 };
