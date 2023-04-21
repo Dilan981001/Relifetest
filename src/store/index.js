@@ -21,17 +21,23 @@ export default createStore({
     },
     getters: {
         getProdutsState: function (state) {
+        
             return state.productState.productsList;
         },
         getCartState: function (state) {
             return state.cartState.cart;
         },
+        getCartCountState: function (state) {
+            
+            return state.cartState.cartCount;
+        }
+        ,
         getCartTotalCount: function (state) {
-            let sum = 0;
-            state.cartState.cart.forEach((each) => {
-                sum = sum + Number(each.count);
-            });
-            return sum;
+            // let sum = 0;
+            // state.cartState.cart.forEach((each) => {
+            //     sum = sum + each;
+            // });
+            return state.cartState.cart.length;
         },
         getTotalPrice: (state) => {
             let total = 0;

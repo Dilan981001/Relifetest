@@ -52,9 +52,11 @@
         password:this.password
       }
            await axios.post(`https://limitless-lake-55070.herokuapp.com/user/signIn`,body)
-          .then(()=>{
-            localStorage.setItem("user-info",JSON.stringify(body))
-            this.$router.push({name:"home"})
+          .then((res)=>{
+            localStorage.setItem("token",res.data.token)
+            this.$store.dispatch("cartModule/getCartItems",this.token);
+            this.$router.push({name:'home'})
+          //  this.$router.push({name:"home"})
           })
               
         }

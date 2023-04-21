@@ -27,7 +27,7 @@
             color="primary"
             icon="add_circle"
             label="ADD TO CART"
-            @click="addToCart(product.id,product.name,product.imageURL,product.price)"
+            @click="addToCart(product.id)"
           />
    
 
@@ -38,10 +38,15 @@
 
 <script>
 import { mapGetters } from "vuex";
+import axios from "axios";  
+import Swal from "sweetalert2";
 export default {
   name: "ProductList",
   data() {
-    return {};
+    return {
+      quantity:1,
+            token:null
+    };
   },
   methods: {
     ClickProduct(id) {
@@ -50,15 +55,39 @@ export default {
     EditProduct(id) {
       this.$router.push({ name: "AdminEditProduct", params: { id: id } });
     },
-    addToCart(id, name, image, price) {
-      const product = {
-        id: id,
-        name: name,
-        img: image,
-        price: price,
-      };
-      this.$store.dispatch("cartModule/setCart", product);
-    },
+    // addToCart(id, name, image, price) {
+    //   const product = {
+    //     id: id,
+    //     name: name,
+    //     img: image,
+    //     price: price,
+    //   };
+    //   this.$store.dispatch("cartModule/setCart", product);
+    // },
+    addToCart(id){
+      // const product = {
+      //   id: id,
+      //   quantity:this.quantity
+      // };
+      axios.post(`https://limitless-lake-55070.herokuapp.com/cart/add?token=${this.token}`,{
+        productId:id,
+        quantity:this.quantity,
+      })
+      .then(res=>{
+        if(res.status==201){
+        
+          Swal.fire({
+            text:"product has added in cart",
+            icon:'success'
+          })
+          this.$store.dispatch("cartModule/getCartItems",this.token);
+        }
+      }).catch(err=>{
+        console.log(err);
+      })
+      
+  },
+
     isHome(){
       return this.$route.name==='home'
       
@@ -69,10 +98,13 @@ export default {
   },
   mounted() {
     //this.getProducts();
+    this.token = localStorage.getItem("token")
     this.$store.dispatch("productModule/getProducts");
+ 
   },
   computed: mapGetters({
     productState: "getProdutsState",
+    cartTotalState:"getCartTotalCount"
   }),
 };
 </script>
