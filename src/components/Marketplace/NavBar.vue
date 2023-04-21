@@ -41,6 +41,7 @@
           class="text-weight-bold q-ml-md"
         />
         <q-btn
+        v-if="!token"
           color="white"
           text-color="black"
           label="Log in / Sign Up"
@@ -48,37 +49,69 @@
           size="70%"
           class="text-weight-bold q-ml-md"
         />
+        <q-btn
+        v-if="token "
+        @click="signout"
+          color="white"
+          text-color="black"
+          label="Log out"
+          to="/login"
+          size="70%"
+          class="text-weight-bold q-ml-md"
+        />
       <q-btn to="/cart" size="10px" class="q-ml-md" color="purple">
   <q-icon name="shopping_cart" />
   <transition name="cart-counter">
-    <q-badge  color="purple" floating > {{ cartTotalState }}  </q-badge>
+    <!-- <q-badge  color="purple" floating > {{ cartTotalState }}  </q-badge> -->
+    <q-badge  color="purple" floating > {{ cartCountState }}  </q-badge>
   </transition>
 </q-btn>
 
       </div>
-      
-      
-   
     </div>
   </q-header>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import axios from 'axios';
 export default {
   data() {
     return {
       showMenu: false,
-      hide: true
+      hide: true,
+      token:null,
     };
   },
   methods:{
     toggleList(){
       this.hide=!this.hide;
-    }
+    },
+    signout() {
+      localStorage.removeItem("token");
+      this.token = null;
+      this.$store.dispatch("cartModule/ResetCartCount");
+      this.$router.push({name:'home'})
+    },
+    listCartItems(){
+      axios.get(`https://limitless-lake-55070.herokuapp.com/cart/?token=${this.token}`)
+      .then(res=>{
+        const result = res.data;
+        this.cartCount = result.cartItems.length;
+      }).catch(err=>{
+        console.log(err);
+      })
+    },
+},
+
+mounted(){
+  this.token = localStorage.getItem("token");
+  this.$store.dispatch("cartModule/getCartItems",this.token);
+  //this.listCartItems();
 },
 computed: mapGetters({
-  cartTotalState:"getCartTotalCount"
+  cartTotalState:"getCartTotalCount",
+  cartCountState:"getCartCountState"
 }),
 
   
